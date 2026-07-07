@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 520" role="img" aria-label="Campo de futebol">
+  <defs>
+    <linearGradient id="sky" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#eaf7ff"/>
+      <stop offset="1" stop-color="#ffffff"/>
+    </linearGradient>
+    <linearGradient id="grass" x1="0" x2="1" y1="0" y2="0">
+      <stop offset="0" stop-color="#0d6f35"/>
+      <stop offset=".5" stop-color="#138c43"/>
+      <stop offset="1" stop-color="#0b5f2e"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="520" fill="url(#sky)"/>
+  <rect y="96" width="1200" height="424" fill="url(#grass)"/>
+  <g opacity=".16">
+    <rect x="0" y="96" width="120" height="424" fill="#fff"/>
+    <rect x="240" y="96" width="120" height="424" fill="#fff"/>
+    <rect x="480" y="96" width="120" height="424" fill="#fff"/>
+    <rect x="720" y="96" width="120" height="424" fill="#fff"/>
+    <rect x="960" y="96" width="120" height="424" fill="#fff"/>
+  </g>
+  <g fill="none" stroke="#f7fff2" stroke-width="10" opacity=".86">
+    <rect x="86" y="138" width="1028" height="330" rx="8"/>
+    <line x1="600" y1="138" x2="600" y2="468"/>
+    <circle cx="600" cy="303" r="76"/>
+    <circle cx="600" cy="303" r="7" fill="#f7fff2" stroke="none"/>
+    <rect x="86" y="214" width="150" height="178"/>
+    <rect x="964" y="214" width="150" height="178"/>
+    <rect x="86" y="252" width="58" height="102"/>
+    <rect x="1056" y="252" width="58" height="102"/>
+  </g>
+  <g transform="translate(820 328)">
+    <circle cx="0" cy="0" r="54" fill="#f8fbff" stroke="#111" stroke-width="5"/>
+    <path d="M0-52 17-18 52-16 25 7 34 43 0 24-34 43-25 7-52-16-17-18Z" fill="#111"/>
+    <path d="M-17-18-34 43M17-18 34 43M-52-16-25 7M52-16 25 7" fill="none" stroke="#111" stroke-width="4"/>
+  </g>
+</svg>

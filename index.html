@@ -16,7 +16,8 @@
     <div class="loading-brand" aria-hidden="true">
       <strong>Futeboletras</strong>
       <div class="loading-ball"><span></span></div>
-      <em>A preparar o relvado</em>
+      <em id="loading-copy">10 camisas miticas para desbloquear</em>
+      <span class="loading-studio"><img src="digitalarts-mark.svg" alt="" aria-hidden="true">DigitalArts</span>
     </div>
   </section>
   <section id="intro-screen" class="intro-screen" hidden aria-label="Introducao">
@@ -24,7 +25,7 @@
       <p id="intro-kicker">TEMPORADA BASE</p>
       <h2>Futeboletras</h2>
       <div class="intro-ball" aria-hidden="true">&#9917;</div>
-      <p id="intro-copy">Encontra jogadores, desbloqueia relatos e coleciona camisolas inspiradas em noites miticas.</p>
+      <p id="intro-copy">Encontra jogadores, celebra golos e coleciona camisas inspiradas em craques lendarios.</p>
       <button id="intro-start" type="button">Entrar em campo</button>
     </div>
   </section>
@@ -32,10 +33,11 @@
     <div class="brand-title">
       <p class="site-kicker">Sopa de letras futebol</p>
       <h1>Futeboletras</h1>
-      <p class="site-subtitle">Relatos, craques e camisolas iconicas</p>
+      <p class="site-subtitle">Golos, craques e camisolas iconicas</p>
+      <p class="brand-credit">by DigitalArts</p>
     </div>
+    <button id="home-back" class="header-control back-control" type="button" aria-label="Voltar ao menu">&#8249;</button>
     <button id="settings-shortcut" class="header-control settings-control" type="button" aria-label="Definicoes">&#9881;</button>
-    <div class="coin-pill" aria-label="Moedas"><span>&#9733;</span><strong id="coin-count">125</strong></div>
     <div class="section-label">
       <span id="level-code">Nivel 1</span>
       <strong>Modo carreira</strong>
@@ -58,13 +60,14 @@
         <div class="home-ball" aria-hidden="true"><span>&#9917;</span></div>
         <div class="home-stats" aria-label="Resumo do progresso">
           <span><strong id="home-level">1</strong><em>Nivel</em></span>
-          <span><strong id="home-coins">125</strong><em>Moedas</em></span>
-          <span><strong id="home-shirts">0/5</strong><em>Camisas</em></span>
+          <span><strong id="home-shirts">0/10</strong><em>Camisas</em></span>
         </div>
         <div class="home-actions">
           <button id="home-continue" type="button">Continuar</button>
           <button id="home-play" type="button" class="secondary">Jogar</button>
+          <button id="home-timed" type="button" class="secondary">Contra-relogio</button>
         </div>
+        <p id="timed-lock-note" class="mode-note">Desbloqueia no nivel 10</p>
         <div class="home-shortcuts">
           <button id="home-collection" type="button" class="secondary">Colecao</button>
           <button id="home-packs" type="button" class="secondary">Pacotes</button>
@@ -80,13 +83,13 @@
         <p id="level-description">Encontra nomes conhecidos em linhas horizontais e verticais.</p>
       </div>
       <section id="discovery-card" class="discovery-card" aria-live="polite">
-        <p class="discovery-label"><span class="mic-icon">🎙</span>NARRACAO ICONICA <span class="quote-count">1/3</span></p>
-        <p id="discovery-text">Encontra um jogador para desbloquear um momento de relato.</p>
+        <p class="discovery-label"><span class="mic-icon">⚽</span><span id="discovery-label-text">GOLO!</span></p>
+        <p id="discovery-text">Encontra um jogador e celebra o golo.</p>
       </section>
       <div class="season-progress" aria-live="polite">
         <div class="season-progress-row">
           <span id="level-progress-text">Nivel 1 de 50</span>
-          <span id="reward-progress-text">Proxima camisola no nivel 10</span>
+          <span id="reward-progress-text">Proxima camisola no nivel 5</span>
         </div>
         <div class="season-progress-track">
           <span id="season-progress-fill"></span>
@@ -94,8 +97,10 @@
       </div>
       <div class="stats-strip" aria-label="Estatisticas">
         <span><strong id="stats-levels">0</strong><em id="stats-levels-label">Niveis</em></span>
-        <span><strong id="stats-words">0</strong><em id="stats-words-label">Palavras</em></span>
-        <span><strong id="stats-hints">0</strong><em id="stats-hints-label">Dicas</em></span>
+      </div>
+      <div id="time-attack-status" class="time-attack-status" hidden aria-live="polite">
+        <span id="time-attack-label">Contra-relogio</span>
+        <strong id="time-attack-clock">01:30</strong>
       </div>
     </section>
 
@@ -139,7 +144,9 @@
         <p id="progress" class="progress" aria-live="polite">0 de 7 jogadores encontrados</p>
         <section id="reward-card" class="reward-card" aria-live="polite">
           <div class="shirt-back" id="reward-shirt" aria-hidden="true">
-            <span id="reward-number">10</span>
+            <span class="shirt-sleeve shirt-sleeve-left"></span>
+            <span class="shirt-sleeve shirt-sleeve-right"></span>
+            <span class="shirt-body"><span class="shirt-number" id="reward-number">10</span></span>
           </div>
           <div>
             <p class="reward-label">PREMIO DESBLOQUEADO</p>
@@ -148,8 +155,7 @@
         </section>
         <p id="result-message" class="result-message" aria-live="polite"></p>
         <div class="actions">
-          <button id="new-puzzle" type="button">Embaralhar</button>
-          <button id="hint-button" type="button" class="secondary">Dica <span id="hints-left">3</span></button>
+          <button id="hint-button" type="button" class="secondary">Dica <span id="hints-left">1</span></button>
           <button id="solve" type="button" class="secondary">Ver solucao</button>
           <button id="fullscreen" type="button" class="secondary utility-action">Ecra inteiro</button>
           <button id="install-app" type="button" class="secondary utility-action">Instalar app</button>
@@ -190,6 +196,13 @@
           <p class="eyebrow">DEFINICOES</p>
           <h2>Controlo do jogo</h2>
         </div>
+        <div class="studio-signature" aria-label="DigitalArts">
+          <img class="studio-logo" src="digitalarts-mark.svg" alt="" aria-hidden="true">
+          <span>
+            <strong>DigitalArts</strong>
+            <em id="studio-tagline">Futebol em palavras</em>
+          </span>
+        </div>
         <label class="setting-row">
           <span id="language-label">Idioma</span>
           <select id="language-select" aria-label="Idioma">
@@ -214,10 +227,14 @@
           <button id="privacy-options" type="button" class="secondary">Gerir</button>
         </label>
         <label class="setting-row">
-          <span id="privacy-policy-label">Politica de privacidade</span>
-          <button id="privacy-policy-open" type="button" class="secondary">Abrir</button>
+          <span id="rate-app-label">Avaliar a app</span>
+          <button id="rate-app-open" type="button" class="secondary">Abrir</button>
         </label>
         <button id="reset-progress" type="button" class="secondary danger-action">Reiniciar progresso</button>
+        <div class="settings-legal">
+          <span id="legal-label">Legal</span>
+          <button id="privacy-policy-open" type="button">Politica de privacidade</button>
+        </div>
         <section id="developer-tools" class="developer-panel" hidden>
           <div class="developer-heading">
             <strong>Developer</strong>
@@ -242,12 +259,15 @@
       <p class="level-complete-kicker">NIVEL COMPLETO</p>
       <h2 id="complete-title">Final feliz!</h2>
       <div class="complete-rewards">
-        <span><strong id="complete-coins">+25</strong><em>moedas</em></span>
         <span><strong id="complete-words">7/7</strong><em>jogadores</em></span>
-        <span><strong id="complete-next-shirt">10</strong><em>proxima camisola</em></span>
+        <span><strong id="complete-next-shirt">5</strong><em>proxima camisola</em></span>
       </div>
       <div id="complete-shirt-preview" class="complete-shirt-preview" hidden>
-        <div class="shirt-back" id="complete-shirt" aria-hidden="true"><span id="complete-shirt-number">10</span></div>
+        <div class="shirt-back" id="complete-shirt" aria-hidden="true">
+          <span class="shirt-sleeve shirt-sleeve-left"></span>
+          <span class="shirt-sleeve shirt-sleeve-right"></span>
+          <span class="shirt-body"><span class="shirt-number" id="complete-shirt-number">10</span></span>
+        </div>
         <div>
           <strong id="complete-shirt-name">Camisola iconica</strong>
           <p id="complete-shirt-story">Nova peca desbloqueada.</p>
@@ -257,7 +277,32 @@
     </div>
   </section>
 
-  <footer><p>Futeboletras <span>Joga, desbloqueia relatos e coleciona camisolas.</span></p></footer>
+  <section id="rating-prompt" class="rating-prompt" hidden aria-live="polite">
+    <div class="rating-panel">
+      <p id="rating-kicker" class="rating-kicker">APOIA O JOGO</p>
+      <h2 id="rating-title">Gostas do Futeboletras?</h2>
+      <p id="rating-copy">Uma avaliacao ajuda a app a crescer.</p>
+      <div class="rating-actions">
+        <button id="rating-accept" type="button">Avaliar agora</button>
+        <button id="rating-later" type="button" class="secondary">Mais tarde</button>
+        <button id="rating-never" type="button" class="secondary">Nao mostrar de novo</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="time-up" class="time-up" hidden aria-live="polite">
+    <div class="time-up-panel">
+      <p id="time-up-kicker" class="time-up-kicker">CONTRA-RELOGIO</p>
+      <h2 id="time-up-title">Tempo esgotado</h2>
+      <p id="time-up-copy">Tenta outra vez e encontra todos antes do apito final.</p>
+      <div class="time-up-actions">
+        <button id="time-retry" type="button">Tentar de novo</button>
+        <button id="time-back" type="button" class="secondary">Modo Zen</button>
+      </div>
+    </div>
+  </section>
+
+  <footer><p>Futeboletras <span>Joga, celebra golos e coleciona camisolas.</span></p></footer>
 
   <script src="jquery-1.7.1.min.js"></script>
   <script src="wordfind.js"></script>
@@ -274,16 +319,24 @@
     const developerQuery = new URLSearchParams(window.location.search).get('dev') === '1';
     let developerMode = developerQuery || localStorage.getItem('sopa-futebol-dev-mode') === 'on';
     if (developerQuery) localStorage.setItem('sopa-futebol-dev-mode', 'on');
-    let hintsLeft = 3;
-    let freeShufflesUsed = 0;
-    const freeShufflesPerLevel = 1;
+    let hintsLeft = 1;
+    let levelAdvancePending = false;
+    let gameMode = localStorage.getItem('sopa-futebol-game-mode') === 'timed' ? 'timed' : 'zen';
+    let timeAttackSeconds = 0;
+    let timeAttackTimer = null;
+    const timeAttackUnlockLevel = 10;
+    let ratingPromptPending = false;
+    const androidPackageId = 'pt.castrioto.futeboletras';
+    const playStoreReviewUrl = 'https://play.google.com/store/apps/details?id=' + androidPackageId;
+    const ratingPromptStorageKey = 'sopa-futebol-rating-state';
+    const ratingPromptSnoozeKey = 'sopa-futebol-rating-snooze-until';
     const adMobConfig = Object.freeze({
-      rewardedShuffleAdId: 'ca-app-pub-6816449623337537/5264174198',
+      rewardedHintAdId: 'ca-app-pub-6816449623337537/5264174198',
       interstitialAdId: 'ca-app-pub-6816449623337537/7453976427',
       interstitialEveryLevels: 5,
       useTestAds: true
     });
-    const rewardedShuffleAdId = adMobConfig.rewardedShuffleAdId;
+    const rewardedHintAdId = adMobConfig.rewardedHintAdId;
     const interstitialAdId = adMobConfig.interstitialAdId;
     const interstitialEveryLevels = adMobConfig.interstitialEveryLevels;
     const admobUseTestAds = adMobConfig.useTestAds;
@@ -292,17 +345,17 @@
     let adConsentChecked = false;
     let adConsentCanRequestAds = true;
     let privacyOptionsRequired = false;
-    let rewardAdLoading = false;
+    let hintAdLoading = false;
     let interstitialAdLoading = false;
     let pendingInterstitialLevel = null;
     const foundWords = new Set();
     const levels = window.FOOTBALL_LEVELS;
-    const facts = window.FOOTBALL_RELATOS;
     const rewards = window.FOOTBALL_REWARDS;
     const packs = window.FOOTBALL_PACKS || [];
     const dictionaries = window.FUTEBOLETRAS_I18N || {};
+    let discoveryState = { labelKey: 'goal', messageKey: 'defaultDiscovery', values: {}, tone: 'goal' };
     currentLevel = Math.min(highestUnlockedLevel, levels.length - 1);
-    const defaultStats = { coins: 125, wordsFound: 0, hintsUsed: 0, solutionsSeen: 0, completedLevels: {} };
+    const defaultStats = { wordsFound: 0, hintsUsed: 0, solutionsSeen: 0, completedLevels: {} };
     let stats = loadStats();
 
     function loadStats() {
@@ -354,13 +407,8 @@
       $('.puzzle-frame').attr('data-shape', shape);
     }
     function updateStatsUI() {
-      $('#coin-count').text(stats.coins || 0);
       $('#stats-levels').text(Object.keys(stats.completedLevels || {}).length);
-      $('#stats-words').text(stats.wordsFound || 0);
-      $('#stats-hints').text(stats.hintsUsed || 0);
       $('#stats-levels-label').text(t('completedLevels'));
-      $('#stats-words-label').text(t('foundWords'));
-      $('#stats-hints-label').text(t('hintsUsed'));
       updateHomeUI();
     }
 
@@ -368,20 +416,141 @@
       const unlockedShirts = Object.keys(rewards).filter(function (level) { return highestUnlockedLevel >= Number(level); }).length;
       const levelNumber = Math.min(highestUnlockedLevel + 1, levels.length);
       $('#home-level').text(levelNumber);
-      $('#home-coins').text(stats.coins || 0);
       $('#home-shirts').text(unlockedShirts + '/' + Object.keys(rewards).length);
-      $('#home-continue').text(highestUnlockedLevel > 0 ? t('continueGame') : t('play'));
+      updateModeUI();
+    }
+    function isTimeAttackUnlocked() {
+      return developerMode || highestUnlockedLevel + 1 >= timeAttackUnlockLevel;
+    }
+    function formatTime(totalSeconds) {
+      const safeSeconds = Math.max(0, Number(totalSeconds) || 0);
+      const minutes = Math.floor(safeSeconds / 60);
+      const seconds = safeSeconds % 60;
+      return String(minutes).padStart(2, '0') + ':' + String(seconds).padStart(2, '0');
+    }
+    function getTimeAttackLimit() {
+      const levelNumber = currentLevel + 1;
+      if (levelNumber <= 5) return 90;
+      if (levelNumber <= 10) return 120;
+      if (levelNumber <= 25) return 150;
+      return 180;
+    }
+    function updateTimeAttackUI() {
+      const isTimed = gameMode === 'timed';
+      const displaySeconds = timeAttackSeconds > 0 || $('#time-up').hasClass('is-visible') ? timeAttackSeconds : getTimeAttackLimit();
+      $('#time-attack-status')
+        .prop('hidden', !isTimed)
+        .toggleClass('is-warning', isTimed && displaySeconds <= 15);
+      $('#time-attack-label').text(t('timeAttackLabel'));
+      $('#time-attack-clock').text(formatTime(displaySeconds));
+    }
+    function updateModeUI() {
+      const timedUnlocked = isTimeAttackUnlocked();
+      document.body.classList.toggle('is-time-attack', gameMode === 'timed');
+      $('.section-label strong').text(gameMode === 'timed' ? t('timeAttackMode') : t('zenMode'));
+      $('.section-label em').text(t('levelsCount'));
+      $('#home-continue').text(highestUnlockedLevel > 0 ? t('continueZen') : t('zenMode'));
+      $('#home-play').text(t('zenMode'));
+      $('#home-timed')
+        .text(t('timeAttackMode'))
+        .toggleClass('is-locked', !timedUnlocked)
+        .attr('aria-disabled', timedUnlocked ? 'false' : 'true');
+      $('#timed-lock-note')
+        .text(timedUnlocked ? t('timeAttackUnlocked') : t('unlockAtLevel', { level: timeAttackUnlockLevel }))
+        .toggleClass('is-unlocked', timedUnlocked);
+      $('#time-up-kicker').text(t('timeAttackMode').toUpperCase());
+      $('#time-up-title').text(t('timeUpTitle'));
+      $('#time-up-copy').text(t('timeUpCopy'));
+      $('#time-retry').text(t('retry'));
+      $('#time-back').text(t('backToZen'));
+      updateTimeAttackUI();
+    }
+    function setGameMode(mode) {
+      gameMode = mode === 'timed' ? 'timed' : 'zen';
+      localStorage.setItem('sopa-futebol-game-mode', gameMode);
+      updateModeUI();
+    }
+    function stopTimeAttackTimer() {
+      if (timeAttackTimer) window.clearInterval(timeAttackTimer);
+      timeAttackTimer = null;
+      updateTimeAttackUI();
+    }
+    function showTimeUp() {
+      stopTimeAttackTimer();
+      $('#result-message').text(t('timeUpTitle')).addClass('error');
+      document.body.classList.add('is-complete-open');
+      $('#time-up').prop('hidden', false).addClass('is-visible');
+      vibrateDevice(140);
+      playNotes([294, 247, 196]);
+    }
+    function hideTimeUp() {
+      $('#time-up').prop('hidden', true).removeClass('is-visible');
+      if ($('#level-complete').prop('hidden') && $('#rating-prompt').prop('hidden')) {
+        document.body.classList.remove('is-complete-open');
+      }
+    }
+    function startTimeAttackTimer() {
+      if (gameMode !== 'timed') {
+        stopTimeAttackTimer();
+        return;
+      }
+      if (timeAttackTimer) window.clearInterval(timeAttackTimer);
+      timeAttackSeconds = getTimeAttackLimit();
+      updateTimeAttackUI();
+      timeAttackTimer = window.setInterval(function () {
+        timeAttackSeconds -= 1;
+        updateTimeAttackUI();
+        if (timeAttackSeconds <= 0) showTimeUp();
+      }, 1000);
+    }
+    function startZenMode() {
+      setGameMode('zen');
+      stopTimeAttackTimer();
+      hideTimeUp();
+      switchView('game-view');
+    }
+    function startTimeAttackMode() {
+      if (!isTimeAttackUnlocked()) {
+        $('#timed-lock-note').text(t('timeAttackLocked', { level: timeAttackUnlockLevel })).addClass('is-alert');
+        window.setTimeout(function () { $('#timed-lock-note').removeClass('is-alert'); updateModeUI(); }, 1800);
+        return;
+      }
+      setGameMode('timed');
+      currentLevel = Math.min(highestUnlockedLevel, levels.length - 1);
+      levelAdvancePending = false;
+      updateLevelUI();
+      recreate();
+      switchView('game-view');
     }
     function updateProgress() {
       $('#progress').text(t('progressTemplate', { found: foundWords.size, total: $('input.word').length }));
     }
-    function updateShuffleButton() {
-      if ($('#new-puzzle').hasClass('is-next')) return;
-      const hasFreeShuffle = freeShufflesUsed < freeShufflesPerLevel;
-      $('#new-puzzle')
-        .toggleClass('is-monetized', !hasFreeShuffle)
-        .toggleClass('is-loading-ad', rewardAdLoading)
-        .text(hasFreeShuffle ? t('shuffle') : t('extraShuffle'));
+    function updateHintButton() {
+      const hasFreeHint = hintsLeft > 0;
+      const label = hasFreeHint ? t('hint') + ' <span id="hints-left">' + hintsLeft + '</span>' : t('extraHint');
+      $('#hint-button')
+        .toggleClass('is-monetized', !hasFreeHint)
+        .toggleClass('is-loading-ad', hintAdLoading)
+        .html(label);
+    }
+    function renderDiscoveryState() {
+      const state = discoveryState || { labelKey: 'goal', messageKey: 'defaultDiscovery', values: {}, tone: 'goal' };
+      $('#discovery-label-text').text(t(state.labelKey, state.values));
+      $('#discovery-text').text(t(state.messageKey, state.values));
+      $('#discovery-card')
+        .removeClass('is-goal is-info')
+        .addClass(state.tone === 'goal' ? 'is-goal' : 'is-info');
+    }
+    function setDiscoveryState(labelKey, messageKey, values, tone, visible) {
+      discoveryState = { labelKey: labelKey, messageKey: messageKey, values: values || {}, tone: tone || 'info' };
+      renderDiscoveryState();
+      if (typeof visible === 'boolean') $('#discovery-card').toggleClass('is-visible', visible);
+    }
+    function showDiscoveryCard(labelKey, messageKey, values, tone) {
+      setDiscoveryState(labelKey, messageKey, values, tone, true);
+    }
+    function showInfoMessage(messageKey, values) {
+      showDiscoveryCard('benchInfo', messageKey, values, 'info');
     }
     function getAdMobPlugin() {
       const capacitor = window.Capacitor;
@@ -411,8 +580,7 @@
     async function openPrivacyOptions() {
       const AdMob = getAdMobPlugin();
       if (!AdMob || !AdMob.showPrivacyOptionsForm) {
-        $('#discovery-text').text(t('adPrivacyUnavailable'));
-        $('#discovery-card').addClass('is-visible');
+        showInfoMessage('adPrivacyUnavailable');
         return;
       }
       try {
@@ -421,8 +589,7 @@
         adConsentCanRequestAds = !consentInfo || consentInfo.canRequestAds !== false;
         updatePrivacyOptionsUI();
       } catch (error) {
-        $('#discovery-text').text(t('adPrivacyUnavailable'));
-        $('#discovery-card').addClass('is-visible');
+        showInfoMessage('adPrivacyUnavailable');
       }
     }
     async function initializeAdMob() {
@@ -438,8 +605,7 @@
     async function showMilestoneInterstitial() {
       if (!pendingInterstitialLevel || interstitialAdLoading) return;
       interstitialAdLoading = true;
-      $('#discovery-text').text(t('interstitialPrompt'));
-      $('#discovery-card').addClass('is-visible');
+      showInfoMessage('interstitialPrompt');
       try {
         const AdMob = await initializeAdMob();
         if (!AdMob) throw new Error('AdMob unavailable outside native app');
@@ -451,21 +617,30 @@
         });
         await AdMob.showInterstitial();
       } catch (error) {
-        $('#discovery-text').text(t('adUnavailable'));
-        $('#discovery-card').addClass('is-visible');
+        showInfoMessage('adUnavailable');
       } finally {
         pendingInterstitialLevel = null;
         interstitialAdLoading = false;
       }
     }
-    function getNextRewardLevel() { return [10, 20, 30, 40, 50].find(function (level) { return level >= currentLevel + 1; }) || 50; }
+    function getRewardLevels() {
+      return Object.keys(rewards).map(Number).sort(function (a, b) { return a - b; });
+    }
+    function getNextRewardLevel() {
+      const levelNumber = currentLevel + 1;
+      const rewardLevels = getRewardLevels();
+      return rewardLevels.find(function (level) { return level >= levelNumber; }) || rewardLevels[rewardLevels.length - 1];
+    }
     function updateSeasonProgress() {
       const levelNumber = currentLevel + 1;
       const nextReward = getNextRewardLevel();
-      const previousReward = nextReward === 10 ? 0 : nextReward - 10;
+      const rewardLevels = getRewardLevels();
+      const previousReward = rewardLevels.slice().reverse().find(function (level) { return level < nextReward; }) || 0;
       const percent = Math.min(100, Math.round(Math.max(0, levelNumber - previousReward) / (nextReward - previousReward) * 100));
+      const targetReward = rewards[nextReward];
+      const targetName = targetReward ? contentText('reward', targetReward.id || targetReward.number, 'name', targetReward.name) : '';
       $('#level-progress-text').text(t('levelProgress', { level: levelNumber, total: levels.length }));
-      $('#reward-progress-text').text(levelNumber >= 50 ? t('masterComplete') : t('nextReward', { level: nextReward }));
+      $('#reward-progress-text').text(levelNumber >= rewardLevels[rewardLevels.length - 1] ? t('masterComplete') : t('nextRewardNamed', { shirt: targetName, level: nextReward }));
       $('#season-progress-fill').css('width', percent + '%');
     }
     function renderWords() {
@@ -502,7 +677,6 @@
       updateSeasonProgress();
       updateStatsUI();
       renderCollection();
-      updateShuffleButton();
     }
     function vibrateDevice(duration) {
       if (!vibrationEnabled) return;
@@ -529,10 +703,10 @@
       restartAnimation($wordInput.closest('li'), 'found-burst', 720);
       restartAnimation($('#discovery-card'), 'is-pulse', 720);
       restartAnimation($('#progress'), 'is-bump', 650);
-      const $bonus = $('<span class="word-bonus"></span>').text(t('goal'));
-      $('#progress').append($bonus);
-      window.setTimeout(function () { $bonus.addClass('is-gone'); }, 1050);
-      window.setTimeout(function () { $bonus.remove(); }, 1600);
+    }
+
+    function playGoalSound() {
+      playNotes([392, 523, 659, 784, 988]);
     }
 
     function showDiscovery(word) {
@@ -540,16 +714,12 @@
       foundWords.add(word);
       stats.wordsFound = (stats.wordsFound || 0) + 1;
       saveStats();
-      const relatoKey = 'relato_' + word;
-      const relato = t(relatoKey);
-      const fallbackRelato = activeLanguage === 'pt' ? facts[word] : null;
-      $('#discovery-text').text(relato === relatoKey ? (fallbackRelato || t('narrationFallback')) : relato);
-      $('#discovery-card').addClass('is-visible');
+      showDiscoveryCard('goal', 'goalFound', { player: word.toUpperCase() }, 'goal');
       updateProgress();
       updateStatsUI();
       vibrateFoundWord();
       showWordFeedback(word);
-      playNotes([523, 659]);
+      playGoalSound();
     }
     function getRewardStyle(reward, locked) {
       const colors = locked ? ['#d9dfd4', '#f5f7f3'] : reward.colors;
@@ -560,25 +730,30 @@
         '--shirt-pattern': locked ? 'linear-gradient(135deg, transparent 0 42%, #8a9485 42% 52%, transparent 52%)' : (reward.pattern || 'linear-gradient(transparent, transparent)')
       };
     }
+    function rewardStyleText(style) {
+      return Object.keys(style).map(function (key) { return key + ':' + style[key]; }).join(';');
+    }
 
     function applyRewardStyle($target, reward, locked) {
-      $target.css(getRewardStyle(reward, locked));
+      $target.attr('style', rewardStyleText(getRewardStyle(reward, locked)));
     }
 
     function showReward(reward) {
+      const rewardId = reward.id || reward.number;
       $('#reward-number').text(reward.number);
-      $('#reward-name').text(contentText('reward', reward.number, 'name', reward.name) + ' - ' + contentText('reward', reward.number, 'rarity', reward.rarity || t('special')));
+      $('#reward-name').text(contentText('reward', rewardId, 'name', reward.name) + ' - ' + contentText('reward', rewardId, 'rarity', reward.rarity || t('special')));
       applyRewardStyle($('#reward-shirt'), reward, false);
       $('#reward-card').addClass('is-visible');
       renderCollection();
     }
     function renderShirt(reward, locked) {
+      const rewardId = reward.id || reward.number;
       const style = getRewardStyle(reward, locked);
-      const styleText = '--shirt-main:' + style['--shirt-main'] + ';--shirt-side:' + style['--shirt-side'] + ';--shirt-accent:' + style['--shirt-accent'] + ';--shirt-pattern:' + style['--shirt-pattern'];
-      const badge = locked ? t('completeLevel', { level: reward.number }) : contentText('reward', reward.number, 'rarity', reward.rarity || t('unlocked'));
-      const story = locked ? t('unlockedStory') : contentText('reward', reward.number, 'story', reward.story || t('unlocked'));
-      const name = contentText('reward', reward.number, 'name', reward.name);
-      return '<article class="collection-card ' + (locked ? 'is-locked' : 'is-unlocked') + '"><span class="rarity-badge">' + badge + '</span><div class="shirt-back" style="' + styleText + '" aria-hidden="true"><span>' + reward.number + '</span></div><strong>' + (locked ? t('locked') : name) + '</strong><p>' + story + '</p></article>';
+      const styleText = rewardStyleText(style);
+      const badge = locked ? t('locked') : contentText('reward', rewardId, 'rarity', reward.rarity || t('unlocked'));
+      const story = locked ? t('unlockedStory') : contentText('reward', rewardId, 'story', reward.story || t('unlocked'));
+      const name = contentText('reward', rewardId, 'name', reward.name);
+      return '<article class="collection-card ' + (locked ? 'is-locked' : 'is-unlocked') + '"><span class="rarity-badge">' + badge + '</span><div class="shirt-back" style="' + styleText + '" aria-hidden="true"><span class="shirt-sleeve shirt-sleeve-left"></span><span class="shirt-sleeve shirt-sleeve-right"></span><span class="shirt-body"><span class="shirt-number">' + reward.number + '</span></span></div><strong>' + (locked ? t('locked') : name) + '</strong><p>' + story + '</p></article>';
     }
     function renderCollection() {
       $('#collection-grid').html(Object.keys(rewards).map(function (level) {
@@ -603,6 +778,13 @@
       if (viewId === 'collection-view') renderCollection();
       if (viewId === 'packs-view') renderPacks();
       if (viewId === 'home-view') updateHomeUI();
+      if (viewId === 'game-view') {
+        updateModeUI();
+        if (gameMode === 'timed') startTimeAttackTimer();
+        else stopTimeAttackTimer();
+      } else {
+        stopTimeAttackTimer();
+      }
     }
 
     function setupDeveloperMode() {
@@ -623,6 +805,7 @@
       if (!developerMode) return;
       currentLevel = Math.max(0, Math.min(levels.length - 1, Number(levelIndex) || 0));
       highestUnlockedLevel = Math.max(highestUnlockedLevel, currentLevel);
+      levelAdvancePending = false;
       localStorage.setItem('sopa-futebol-highest-level', highestUnlockedLevel);
       $('#developer-level-select').val(currentLevel);
       updateLevelUI();
@@ -633,27 +816,66 @@
       const remaining = levels[currentLevel].words.filter(function (word) { return !foundWords.has(word); });
       if (!remaining.length) return;
       if (hintsLeft <= 0) {
-        $('#discovery-text').text(t('noHints'));
-        $('#discovery-card').addClass('is-visible');
-        playNotes([220]);
+        requestRewardedHint();
         return;
       }
-      hintsLeft -= 1;
+      revealHintLetter(remaining[0], true);
+    }
+
+    function revealHintLetter(words, consumeFreeHint) {
+      const candidates = Array.isArray(words) ? words : [words];
+      let hintedWord = null;
+      const hinted = game && game.hintLetter ? candidates.some(function (candidate) {
+        const didHint = game.hintLetter(candidate);
+        if (didHint) hintedWord = candidate;
+        return didHint;
+      }) : false;
+      if (!hinted) {
+        showInfoMessage('createError');
+        playNotes([220]);
+        return false;
+      }
+      const wordUpper = hintedWord.toUpperCase();
+      if (consumeFreeHint) hintsLeft = Math.max(0, hintsLeft - 1);
       stats.hintsUsed = (stats.hintsUsed || 0) + 1;
       saveStats();
-      $('#hints-left').text(hintsLeft);
-      const word = remaining[0].toUpperCase();
-      const clue = word.length <= 4 ? word[0] + '...' : word[0] + '...' + word[word.length - 1];
-      $('#discovery-text').text(t('clue', { clue: clue, count: word.length }));
-      $('#discovery-card').addClass('is-visible');
-      $('input.word').filter(function () { return this.value === word; }).addClass('is-hinted');
-      highlightHintStart(word[0]);
+      updateHintButton();
+      showInfoMessage('letterHint', { word: wordUpper });
+      $('input.word').filter(function () { return this.value === wordUpper; }).addClass('is-hinted');
       updateStatsUI();
       playNotes([392, 523]);
+      return true;
+    }
+
+    async function requestRewardedHint() {
+      if (hintAdLoading) return;
+      const remaining = levels[currentLevel].words.filter(function (word) { return !foundWords.has(word); });
+      if (!remaining.length) return;
+      hintAdLoading = true;
+      updateHintButton();
+      showInfoMessage('extraHintPrompt');
+      try {
+        const AdMob = await initializeAdMob();
+        if (!AdMob) throw new Error('AdMob unavailable outside native app');
+        await AdMob.prepareRewardVideoAd({
+          adId: rewardedHintAdId,
+          isTesting: admobUseTestAds,
+          npa: true,
+          immersiveMode: true
+        });
+        await AdMob.showRewardVideoAd();
+        revealHintLetter(remaining, false);
+      } catch (error) {
+        showInfoMessage('adUnavailable');
+        playNotes([220]);
+      } finally {
+        hintAdLoading = false;
+        updateHintButton();
+      }
     }
 
     function clearHintStart() {
-      $('.puzzleSquare').removeClass('hint-start');
+      $('.puzzleSquare').removeClass('hint-start hint-letter');
     }
 
     function highlightHintStart(firstLetter) {
@@ -676,142 +898,193 @@
       }, 5200);
     }
     function getNextLockedRewardLevel() {
-      return Object.keys(rewards).map(Number).sort(function (a, b) { return a - b; }).find(function (level) { return level > currentLevel + 1; }) || 50;
+      return getRewardLevels().find(function (level) { return level > currentLevel + 1; }) || null;
     }
 
-    function showLevelComplete(completedLevel, coinsEarned, reward) {
+    function showLevelComplete(completedLevel, reward) {
       $('#complete-title').text(t('levelCompleteTitle', { level: completedLevel }));
-      $('#complete-coins').text('+' + coinsEarned);
       $('#complete-words').text(foundWords.size + '/' + levels[currentLevel].words.length);
       const nextRewardLevel = getNextLockedRewardLevel();
-      $('#complete-next-shirt').text(completedLevel >= 50 ? 'OK' : Math.max(1, nextRewardLevel - completedLevel));
-      $('.complete-rewards span').eq(2).find('em').text(completedLevel >= 50 ? t('collectionShort') : t('levelsToShirt'));
-      $('#complete-continue').text(completedLevel < levels.length ? t('nextLevel') : t('backToMenu'));
+      if (gameMode === 'timed') {
+        $('#complete-next-shirt').text(formatTime(timeAttackSeconds));
+        $('.complete-rewards span').eq(1).find('em').text(t('timeLeftShort'));
+        $('#complete-continue').text(currentLevel < Math.min(highestUnlockedLevel, levels.length - 1) ? t('nextTimedLevel') : t('backToMenu'));
+      } else {
+        $('#complete-next-shirt').text(nextRewardLevel ? Math.max(1, nextRewardLevel - completedLevel) : 'OK');
+        $('.complete-rewards span').eq(1).find('em').text(nextRewardLevel ? t('levelsToShirt') : t('collectionShort'));
+        $('#complete-continue').text(completedLevel < levels.length ? t('nextLevel') : t('backToMenu'));
+      }
       if (reward) {
+        const rewardId = reward.id || reward.number;
         $('#complete-shirt-number').text(reward.number);
-        $('#complete-shirt-name').text(contentText('reward', reward.number, 'name', reward.name) + ' - ' + contentText('reward', reward.number, 'rarity', reward.rarity || t('special')));
-        $('#complete-shirt-story').text(contentText('reward', reward.number, 'story', reward.story || t('newPieceUnlocked')));
+        $('#complete-shirt-name').text(contentText('reward', rewardId, 'name', reward.name) + ' - ' + contentText('reward', rewardId, 'rarity', reward.rarity || t('special')));
+        $('#complete-shirt-story').text(contentText('reward', rewardId, 'story', reward.story || t('newPieceUnlocked')));
         applyRewardStyle($('#complete-shirt'), reward, false);
+        $('#complete-shirt-preview').prop('hidden', false);
+      } else if (gameMode === 'timed') {
+        $('#complete-shirt-preview').prop('hidden', true);
+      } else if (nextRewardLevel && rewards[nextRewardLevel]) {
+        const nextReward = rewards[nextRewardLevel];
+        const rewardId = nextReward.id || nextReward.number;
+        const remaining = Math.max(1, nextRewardLevel - completedLevel);
+        $('#complete-shirt-number').text(nextReward.number);
+        $('#complete-shirt-name').text(t('nextShirtPreview', {
+          shirt: contentText('reward', rewardId, 'name', nextReward.name),
+          rarity: contentText('reward', rewardId, 'rarity', nextReward.rarity || t('special'))
+        }));
+        $('#complete-shirt-story').text(t('unlockInLevels', { count: remaining }));
+        applyRewardStyle($('#complete-shirt'), nextReward, false);
         $('#complete-shirt-preview').prop('hidden', false);
       } else {
         $('#complete-shirt-preview').prop('hidden', true);
       }
+      document.body.classList.add('is-complete-open');
       $('#level-complete').prop('hidden', false).addClass('is-visible');
     }
 
     function hideLevelComplete() {
+      document.body.classList.remove('is-complete-open');
       $('#level-complete').prop('hidden', true).removeClass('is-visible');
+    }
+
+    function getCompletedLevelCount() {
+      return Object.keys(stats.completedLevels || {}).length;
+    }
+
+    function shouldAskForRating(completedLevel, firstCompletion) {
+      if (!firstCompletion || developerMode) return false;
+      const ratingState = localStorage.getItem(ratingPromptStorageKey);
+      if (ratingState === 'rated' || ratingState === 'never') return false;
+      const snoozeUntil = Number(localStorage.getItem(ratingPromptSnoozeKey) || 0);
+      if (snoozeUntil && Date.now() < snoozeUntil) return false;
+      return getCompletedLevelCount() >= 3 && completedLevel % interstitialEveryLevels !== 0;
+    }
+
+    function showRatingPrompt() {
+      $('#rating-prompt').prop('hidden', false).addClass('is-visible');
+    }
+
+    function hideRatingPrompt() {
+      $('#rating-prompt').prop('hidden', true).removeClass('is-visible');
+    }
+
+    function continueAfterRatingPrompt() {
+      hideRatingPrompt();
+      if (levelAdvancePending) recreate();
+      else switchView('home-view');
+    }
+
+    function openRatingPage() {
+      try {
+        const opened = window.open(playStoreReviewUrl, '_blank', 'noopener');
+        if (!opened) window.location.href = playStoreReviewUrl;
+      } catch (error) {
+        window.location.href = playStoreReviewUrl;
+      }
+    }
+
+    function acceptRatingPrompt() {
+      localStorage.setItem(ratingPromptStorageKey, 'rated');
+      localStorage.removeItem(ratingPromptSnoozeKey);
+      openRatingPage();
+      continueAfterRatingPrompt();
+    }
+
+    function snoozeRatingPrompt() {
+      localStorage.setItem(ratingPromptSnoozeKey, String(Date.now() + 7 * 24 * 60 * 60 * 1000));
+      continueAfterRatingPrompt();
+    }
+
+    function dismissRatingPromptForever() {
+      localStorage.setItem(ratingPromptStorageKey, 'never');
+      localStorage.removeItem(ratingPromptSnoozeKey);
+      continueAfterRatingPrompt();
     }
 
     function completePuzzle() {
       const completedLevel = currentLevel + 1;
+      if (gameMode === 'timed') {
+        stopTimeAttackTimer();
+        $('#result-message').text(t('completedMessage')).removeClass('error');
+        $('#puzzle').addClass('is-complete');
+        showLevelComplete(completedLevel, null);
+        updateStatsUI();
+        playNotes([523, 659, 784, 1046]);
+        return;
+      }
       const firstCompletion = !stats.completedLevels[completedLevel];
       const reward = rewards[completedLevel];
-      const coinsEarned = firstCompletion ? (reward && reward.coinBonus ? reward.coinBonus : 25) : 0;
       $('#result-message').text(t('completedMessage')).removeClass('error');
       $('#puzzle').addClass('is-complete');
       highestUnlockedLevel = Math.max(highestUnlockedLevel, currentLevel);
       if (firstCompletion) {
         stats.completedLevels[completedLevel] = true;
-        stats.coins = (stats.coins || 0) + coinsEarned;
         saveStats();
         if (completedLevel % interstitialEveryLevels === 0 && completedLevel < levels.length) {
           pendingInterstitialLevel = completedLevel;
         }
       }
+      ratingPromptPending = shouldAskForRating(completedLevel, firstCompletion);
       if (currentLevel < levels.length - 1) {
+        levelAdvancePending = true;
         highestUnlockedLevel = Math.max(highestUnlockedLevel, currentLevel + 1);
         localStorage.setItem('sopa-futebol-highest-level', highestUnlockedLevel);
         updateLevelUI();
         $('#next-level').addClass('is-available');
-        $('#new-puzzle').text(t('next')).addClass('is-next');
+      } else {
+        levelAdvancePending = false;
       }
       if (reward) showReward(reward);
-      showLevelComplete(completedLevel, coinsEarned, reward);
+      showLevelComplete(completedLevel, reward);
       updateStatsUI();
       playNotes([523, 659, 784, 1046]);
     }
     async function continueAfterComplete() {
       hideLevelComplete();
+      if (gameMode === 'timed') {
+        const maxTimedLevel = Math.min(highestUnlockedLevel, levels.length - 1);
+        if (currentLevel < maxTimedLevel) {
+          currentLevel += 1;
+          updateLevelUI();
+          recreate();
+          switchView('game-view');
+        } else {
+          switchView('home-view');
+        }
+        return;
+      }
       if (pendingInterstitialLevel) await showMilestoneInterstitial();
-      if ($('#new-puzzle').hasClass('is-next')) recreate();
+      if (ratingPromptPending) {
+        ratingPromptPending = false;
+        showRatingPrompt();
+        return;
+      }
+      if (levelAdvancePending) recreate();
       else switchView('home-view');
     }
-    function grantRewardedShuffle() {
-      recreate({ preserveShuffleUsage: true });
-      $('#discovery-text').text(t('extraShuffleGranted'));
-      $('#discovery-card').addClass('is-visible');
-      updateShuffleButton();
-      playNotes([523, 659]);
-    }
 
-    async function requestExtraShuffle() {
-      if (rewardAdLoading) return;
-      $('#discovery-text').text(t('extraShufflePrompt'));
-      $('#discovery-card').addClass('is-visible');
-      rewardAdLoading = true;
-      updateShuffleButton();
-      try {
-        const AdMob = await initializeAdMob();
-        if (!AdMob) throw new Error('AdMob unavailable outside native app');
-        await AdMob.prepareRewardVideoAd({
-          adId: rewardedShuffleAdId,
-          isTesting: admobUseTestAds,
-          npa: true,
-          immersiveMode: true
-        });
-        await AdMob.showRewardVideoAd();
-        grantRewardedShuffle();
-      } catch (error) {
-        $('#discovery-text').text(t('adUnavailable'));
-        $('#discovery-card').addClass('is-visible');
-        playNotes([220]);
-      } finally {
-        rewardAdLoading = false;
-        updateShuffleButton();
+    function recreate() {
+      if (levelAdvancePending) {
+        if (currentLevel < highestUnlockedLevel) {
+          currentLevel += 1;
+          updateLevelUI();
+        }
+        levelAdvancePending = false;
       }
-    }
-
-    function handleShuffleRequest() {
-      if ($('#new-puzzle').hasClass('is-next')) {
-        recreate();
-        return;
-      }
-      if (freeShufflesUsed >= freeShufflesPerLevel) {
-        requestExtraShuffle();
-        updateShuffleButton();
-        return;
-      }
-      freeShufflesUsed += 1;
-      recreate({ preserveShuffleUsage: true });
-      $('#discovery-text').text(t('freeShuffleUsed'));
-      $('#discovery-card').addClass('is-visible');
-      updateShuffleButton();
-    }
-
-    function recreate(options) {
-      options = options || {};
-      let advancedLevel = false;
-      if ($('#new-puzzle').hasClass('is-next') && currentLevel < highestUnlockedLevel) {
-        currentLevel += 1;
-        advancedLevel = true;
-        updateLevelUI();
-      }
-      if (!options.preserveShuffleUsage || advancedLevel) freeShufflesUsed = 0;
       foundWords.clear();
       renderWords();
       updateProgress();
       $('#discovery-card').removeClass('is-visible');
       $('#reward-card').removeClass('is-visible');
       hideLevelComplete();
-      $('#discovery-text').text(t('defaultDiscovery'));
+      hideTimeUp();
+      setDiscoveryState('goal', 'defaultDiscovery', {}, 'goal', false);
       $('input.word').removeClass('is-hinted');
       clearHintStart();
-      hintsLeft = 3;
-      $('#hints-left').text(hintsLeft);
+      hintsLeft = 1;
+      updateHintButton();
       $('#puzzle').removeClass('is-complete');
       $('#next-level').removeClass('is-available');
-      $('#new-puzzle').removeClass('is-next is-monetized');
       $('#result-message').text(t('ballInPlay')).removeClass('error');
       try {
         game = new WordFindGame('#puzzle', {
@@ -822,12 +1095,13 @@
           fillBlanks: true,
           maxAttempts: 300,
           orientations: levels[currentLevel].orientations,
+          preventOverlap: !!(levels[currentLevel].grid && levels[currentLevel].grid.preventOverlap),
+          preferOverlap: !(levels[currentLevel].grid && levels[currentLevel].grid.preventOverlap),
           onWordFound: showDiscovery,
           onComplete: completePuzzle
         });
         fitPuzzleToScreen();
         showTutorialCue();
-        updateShuffleButton();
       } catch (error) {
         $('#result-message').text(t('createError')).addClass('error');
       }
@@ -838,29 +1112,25 @@
       document.title = 'Futeboletras';
       $('meta[name="description"]').attr('content', t('metaDescription'));
       $('#loading-screen').attr('aria-label', t('loadingLabel'));
+      $('#loading-copy').text(t('loadingCopy'));
       $('#settings-shortcut').attr('aria-label', t('settingsAria'));
-      $('.coin-pill').attr('aria-label', t('coinsAria'));
       $('.app-tabs').attr('aria-label', t('appNavAria'));
       $('#home-view').attr('aria-label', t('homeAria'));
       $('.home-kicker').text(t('homeSeason'));
       $('.home-stats').attr('aria-label', t('progressSummary'));
       $('#home-level').siblings('em').text(t('levelLabel'));
-      $('#home-coins').siblings('em').text(t('coins'));
       $('#home-shirts').siblings('em').text(t('shirts'));
       $('.site-kicker').text(t('findWords'));
       $('.site-subtitle').text(t('appSubtitle'));
-      $('.section-label strong').text(t('careerMode'));
-      $('.section-label em').text(t('levelsCount'));
+      $('#home-back').attr('aria-label', t('backToMenu'));
       $('.tab-button[data-view=\"game-view\"]').html('<span class=\"tab-icon\">&#9917;</span>' + t('play'));
-      $('#home-continue').text(highestUnlockedLevel > 0 ? t('continueGame') : t('play'));
-      $('#home-play').text(t('play'));
       $('#home-collection').text(t('collection'));
       $('#home-packs').text(t('packs'));
       $('.tab-button[data-view=\"collection-view\"]').html('<span class=\"tab-icon\">&#9633;</span>' + t('collection'));
       $('.tab-button[data-view=\"packs-view\"]').html('<span class=\"tab-icon\">&#9670;</span>' + t('packs'));
       $('.tab-button[data-view="settings-view"]').text(t('settings'));
       $('.match-title-block .eyebrow').text(t('benchChallenge'));
-      $('.discovery-label').html('<span class="mic-icon">&#127908;</span>' + t('iconicNarration') + ' <span class="quote-count">1/3</span>');
+      renderDiscoveryState();
       $('.board-title').text(t('findWords'));
       $('.stats-strip').attr('aria-label', t('statsAria'));
       $('.game-card').attr('aria-label', t('gameCardAria'));
@@ -874,9 +1144,8 @@
       $('.word-panel .panel-heading h2').text(t('findPlayersHeading'));
       $('#levels').attr('aria-label', t('difficultyLevelsAria'));
       $('#words').attr('aria-label', t('wordsAria'));
-      $('#hint-button').html(t('hint') + ' <span id="hints-left">' + hintsLeft + '</span>');
+      updateHintButton();
       $('#solve').text(t('solve'));
-      updateShuffleButton();
       $('#fullscreen').text(t('fullscreen'));
       $('#install-app').text(t('install'));
       $('#sound').text(t('soundStatus', { status: soundEnabled ? t('on').toLowerCase() : t('off').toLowerCase() }));
@@ -893,6 +1162,7 @@
       $('#settings-view').attr('aria-label', t('settingsAria'));
       $('#settings-view .eyebrow').text(t('settings').toUpperCase());
       $('#settings-view h2').text(t('settingsHeading'));
+      $('#studio-tagline').text(t('studioTagline'));
       $('#language-label').text(t('language'));
       $('#language-select option[value="pt"]').text(t('portuguese'));
       $('#language-select option[value="es"]').text(t('spanish'));
@@ -903,8 +1173,10 @@
       $('#settings-vibration').text(vibrationEnabled ? t('on') : t('off'));
       $('#privacy-options-label').text(t('adPrivacy'));
       $('#privacy-options').text(t('managePrivacy'));
-      $('#privacy-policy-label').text(t('privacyPolicy'));
-      $('#privacy-policy-open').text(t('openPrivacyPolicy'));
+      $('#legal-label').text(t('legal'));
+      $('#privacy-policy-open').text(t('privacyPolicy'));
+      $('#rate-app-label').text(t('rateApp'));
+      $('#rate-app-open').text(t('rateAppOpen'));
       updatePrivacyOptionsUI();
       $('#reset-progress').text(t('reset'));
       $('#developer-status').text(t('developerPrivate'));
@@ -915,14 +1187,20 @@
       $('#developer-lock-again').text(t('backToNormal'));
       $('.level-complete-kicker').text(t('levelComplete'));
       $('#complete-title').text(t('happyEnding'));
-      $('.complete-rewards span').eq(0).find('em').text(t('coins'));
-      $('.complete-rewards span').eq(1).find('em').text(t('players'));
-      $('.complete-rewards span').eq(2).find('em').text(t('nextShirtShort'));
+      $('.complete-rewards span').eq(0).find('em').text(t('players'));
+      $('.complete-rewards span').eq(1).find('em').text(t('nextShirtShort'));
       $('#complete-shirt-name').text(t('iconicShirt'));
       $('#complete-shirt-story').text(t('newPieceUnlocked'));
       $('#complete-continue').text(t('continueGame'));
+      $('#rating-kicker').text(t('ratingKicker'));
+      $('#rating-title').text(t('ratingTitle'));
+      $('#rating-copy').text(t('ratingCopy'));
+      $('#rating-accept').text(t('ratingAccept'));
+      $('#rating-later').text(t('ratingLater'));
+      $('#rating-never').text(t('ratingNever'));
       $('footer p span').text(t('footer'));
       $('#language-select').val(activeLanguage);
+      updateModeUI();
       updateLevelUI();
       updateProgress();
       renderPacks();
@@ -935,7 +1213,9 @@
     switchView('home-view');
     window.setTimeout(hideLoadingScreen, 520);
     $('.tab-button').on('click', function () { switchView($(this).data('view')); });
-    $('#home-continue, #home-play').on('click', function () { switchView('game-view'); });
+    $('#home-back').on('click', function () { switchView('home-view'); });
+    $('#home-continue, #home-play').on('click', startZenMode);
+    $('#home-timed').on('click', startTimeAttackMode);
     $('#home-collection').on('click', function () { switchView('collection-view'); });
     $('#home-packs').on('click', function () { switchView('packs-view'); });
     $('#settings-shortcut').on('click', function () { switchView('settings-view'); });
@@ -946,8 +1226,9 @@
       highestUnlockedLevel = levels.length - 1;
       localStorage.setItem('sopa-futebol-highest-level', highestUnlockedLevel);
       updateLevelUI();
+      updateModeUI();
       renderCollection();
-      $('#developer-status').text('Todos os niveis acessiveis para teste');
+      $('#developer-status').text(t('developerAllOpen'));
     });
     $('#developer-lock-again').on('click', function () {
       if (!developerMode) return;
@@ -956,14 +1237,16 @@
       $('#developer-tools').prop('hidden', true);
       document.body.classList.remove('is-developer-mode');
       highestUnlockedLevel = Number(localStorage.getItem('sopa-futebol-highest-level') || 0);
+      setGameMode('zen');
       switchView('game-view');
     });
-    $('#new-puzzle').on('click', handleShuffleRequest);
     $('#complete-continue').on('click', continueAfterComplete);
+    $('#time-retry').on('click', function () { hideTimeUp(); recreate(); switchView('game-view'); });
+    $('#time-back').on('click', function () { hideTimeUp(); setGameMode('zen'); switchView('home-view'); });
     $('#hint-button').on('click', useHint);
     $('#puzzle').on('mousedown touchstart', function () { $('#tutorial-cue').prop('hidden', true); localStorage.setItem('sopa-futebol-tutorial-seen', 'yes'); });
     $('#solve').on('click', function () { stats.solutionsSeen = (stats.solutionsSeen || 0) + 1; saveStats(); updateStatsUI(); game.solve(); });
-    $('#next-level').on('click', function () { if (currentLevel < levels.length - 1) { currentLevel += 1; updateLevelUI(); recreate(); } });
+    $('#next-level').on('click', function () { if (currentLevel < levels.length - 1) { levelAdvancePending = false; currentLevel += 1; updateLevelUI(); recreate(); } });
     $('#language-select').on('change', function () { activeLanguage = this.value; localStorage.setItem('sopa-futebol-language', activeLanguage); applyLanguage(); });
     $('#sound').on('click', function () { soundEnabled = !soundEnabled; localStorage.setItem('sopa-futebol-sound', soundEnabled ? 'on' : 'off'); applyLanguage(); if (soundEnabled) playNotes([523]); });
     $('#settings-sound').on('click', function () { $('#sound').trigger('click'); });
@@ -975,10 +1258,19 @@
     });
     $('#privacy-options').on('click', openPrivacyOptions);
     $('#privacy-policy-open').on('click', function () { window.open('privacy-policy.html', '_blank'); });
+    $('#rate-app-open').on('click', function () {
+      localStorage.setItem(ratingPromptStorageKey, 'rated');
+      openRatingPage();
+    });
+    $('#rating-accept').on('click', acceptRatingPrompt);
+    $('#rating-later').on('click', snoozeRatingPrompt);
+    $('#rating-never').on('click', dismissRatingPromptForever);
     $('#intro-start').on('click', hideIntroScreen);
     $('#reset-progress').on('click', function () {
       highestUnlockedLevel = 0;
       currentLevel = 0;
+      levelAdvancePending = false;
+      setGameMode('zen');
       stats = Object.assign({}, defaultStats, { completedLevels: {} });
       localStorage.setItem('sopa-futebol-highest-level', highestUnlockedLevel);
       saveStats();
